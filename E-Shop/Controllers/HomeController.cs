@@ -7,7 +7,7 @@ using E_Shop.Data;
 namespace E_Shop.Controllers
 {
     [ApiController]
-    [Route("home")]
+    [Route("[controller]")]
     public class HomeController : BaseController
     {
         private readonly IHomeService _homeService;
@@ -15,8 +15,8 @@ namespace E_Shop.Controllers
         public HomeController(IHomeService homeService, ApplicationDbContext context) : base(context) =>
             _homeService = homeService;
 
-        [HttpGet("shoes")]
-        public IActionResult GetShoes() =>
-            Ok(_homeService.GetShoes()); 
+        [HttpGet]
+        public IEnumerable<ShoesDTO> Get() => _homeService.GetShoes();
+
     }
 }

@@ -27,7 +27,7 @@ namespace E_Shop.Services
                 UrlPicture = shoe.UrlPicture,
                 State = shoe.State,
                 Like = shoe.Like
-            }).ToList();
+            });
         }
     }
 }
