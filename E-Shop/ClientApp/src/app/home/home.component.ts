@@ -11,21 +11,18 @@ import { Shoes } from './../interfaces/shoes-interface';
 })
 export class HomeComponent implements OnInit {
   shoes: Shoes[] = [];
+  private destroy$ = new Subject<void>();
 
   constructor(private shoesService: ShoesService) { }
 
   ngOnInit(): void {
-    this.fetchShoes();
-  }
-
-  fetchShoes(): void {
-    this.shoesService.getShoes().subscribe(
-      (shoes: Shoes[]) => {
-        this.shoes = shoes;
-      },
-      (error) => {
-        console.error('Error fetching shoes:', error);
-      }
-    );
+    this.shoesService.getShoes()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (result => this.shoes = result),
+        (error) => {
+          console.error('Error fetching shoes:', error);
+        }
+      );
   }
 }

@@ -24,7 +24,6 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'home/shoes', component: HomeComponent }
     ])
   ],
   providers: [
