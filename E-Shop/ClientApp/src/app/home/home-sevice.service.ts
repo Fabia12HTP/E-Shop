@@ -8,9 +8,10 @@ import { Shoes } from '../interfaces/shoes-interface';
 })
 export class ShoesService {
   shoesURL = this.baseUrl + 'home';
+
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
   getShoes(): Observable<Shoes[]> {
-    return this.http.get<Shoes[]>(this.baseUrl);
+    return this.http.get<Shoes[]>(this.shoesURL);
   }
 }

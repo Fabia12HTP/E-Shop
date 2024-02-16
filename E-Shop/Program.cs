@@ -1,8 +1,7 @@
 using E_Shop.Data;
 using E_Shop.Models;
+using E_Shop.Services;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +24,8 @@ builder.Services.AddAuthentication()
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+builder.Services.AddScoped<IHomeService, HomeServiceImpl>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,7 +41,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UsePathBase("/api") ;
+app.UsePathBase("/api/") ;
 app.UseRouting();
 
 app.UseAuthentication();
