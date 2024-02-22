@@ -1,11 +1,11 @@
-<input class="form-control" type="text" placeholder="Search" />
+<input class="form-control" type="text" placeholder="Search" [(ngModel)]="searchText"  />
 
 <div *ngIf="shoes">
   <h1>Shoes</h1>
   <ul>
-    <li *ngFor="let shoe of shoes">
+    <li *ngFor="let shoe of shoes | searchPipe: searchText">
       <h2>{{ shoe.name }}</h2>
-      <p>{{ shoe.description }}</p>
+      <!--<p>{{ shoe.description }}</p>-->
       <!-- Zobraziť ďalšie údaje o topánkach -->
     </li>
   </ul>

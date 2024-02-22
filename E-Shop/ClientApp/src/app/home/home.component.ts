@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   shoes: Shoes[] = [];
   private destroy$ = new Subject<void>();
 
+  searchText = '';
+
   constructor(private shoesService: ShoesService) { }
 
   ngOnInit(): void {
