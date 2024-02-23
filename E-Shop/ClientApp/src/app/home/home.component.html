@@ -4,9 +4,18 @@
   <h1>Shoes</h1>
   <ul>
     <li *ngFor="let shoe of shoes | searchPipe: searchText">
-      <h2>{{ shoe.name }}</h2>
-      <!--<p>{{ shoe.description }}</p>-->
-      <!-- Zobraziť ďalšie údaje o topánkach -->
+      <a>
+        <img src="{{ shoe.urlpicture }}" alt="Shoe-Image" />
+          <div class="content">
+            <div class="name">
+              {{ shoe.name }}
+            </div>
+            <span class="favourite {{ shoe.like?'':'not' }}">
+              &#10084;
+            </span>
+          </div>
+        <p></p>
+      </a>
     </li>
   </ul>
 </div>

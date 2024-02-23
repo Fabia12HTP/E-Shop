@@ -5,6 +5,6 @@ namespace E_Shop.Services
 {
     public interface IHomeService
     {
-        IEnumerable<ShoesDTO> GetShoes(); 
+        IEnumerable<ShoesDTO> GetShoes();
     }
 }

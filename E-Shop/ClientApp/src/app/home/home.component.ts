@@ -7,12 +7,12 @@ import { Shoes } from './../interfaces/shoes-interface';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   shoes: Shoes[] = [];
   private destroy$ = new Subject<void>();
-
+  
   searchText = '';
 
   constructor(private shoesService: ShoesService) { }

@@ -16,6 +16,7 @@ namespace E_Shop.Controllers
             _homeService = homeService;
 
         [HttpGet]
+
         public IEnumerable<ShoesDTO> Get() => _homeService.GetShoes();
 
     }
