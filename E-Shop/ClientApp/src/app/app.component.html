@@ -1,6 +1,7 @@
-<body>
+<body [class.dark-mode]="darkModeState">
   <app-nav-menu></app-nav-menu>
   <main class="container">
     <router-outlet></router-outlet>
   </main>
+  <button (click)="toggleDarkMode()">Toggle Dark Mode</button>
 </body>
