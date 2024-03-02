@@ -32,4 +32,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  toggleLike(shoe: Shoes): void {
+    shoe.like = !shoe.like;
+  }
 }
