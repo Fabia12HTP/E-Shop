@@ -5,7 +5,7 @@
   <ul>
     <li *ngFor="let shoe of shoes | searchPipe: searchText">
       <a>
-        <img src="{{ shoe.urlpicture }}" alt="Shoe-Image" />
+        <img [src]="shoe.urlPicture" alt="Shoe-Image" loading="lazy"/>
           <div class="content">
             <div class="name">
               {{ shoe.name }}

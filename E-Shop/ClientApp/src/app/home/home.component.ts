@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
-import { inject } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ShoesService } from '../home/home-sevice.service';
 import { Shoes } from './../interfaces/shoes-interface';
 
@@ -9,10 +9,10 @@ import { Shoes } from './../interfaces/shoes-interface';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   shoes: Shoes[] = [];
   private destroy$ = new Subject<void>();
-  
+
   searchText = '';
 
   constructor(private shoesService: ShoesService) { }
@@ -26,5 +26,10 @@ export class HomeComponent implements OnInit {
           console.error('Error fetching shoes:', error);
         }
       );
+  }
+  
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

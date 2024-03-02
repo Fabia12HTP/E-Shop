@@ -1,5 +1,6 @@
 ﻿using E_Shop.Data;
 using E_Shop.DTOs;
+using System.Web;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace E_Shop.Services
         {
             _context = context;
         }
-
+        
         public IEnumerable<ShoesDTO> GetShoes()
         {
             return _context.Shoes.Select(shoe => new ShoesDTO
@@ -24,10 +25,19 @@ namespace E_Shop.Services
                 Description = shoe.Description,
                 Price = shoe.Price,
                 Rating = shoe.Rating,
-                UrlPicture = shoe.UrlPicture,
+                UrlPicture = FormatUrl(shoe.UrlPicture),
                 State = shoe.State,
                 Like = shoe.Like
-            });
+            }); ;
+        }
+
+        private static string? FormatUrl(string? url)
+        {
+            if (url != null)
+            {
+                return url.Replace("\\", "/");
+            }
+            return url;
         }
     }
 }
