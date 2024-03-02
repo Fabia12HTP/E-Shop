@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ShoesService } from '../home/home-sevice.service';
@@ -10,18 +10,18 @@ import { Shoes } from './../interfaces/shoes-interface';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  shoes: Shoes[] = [];
+
   private destroy$ = new Subject<void>();
 
-  searchText = '';
+  searchText: any;
 
+  shoes = signal<Shoes[]>([]);
   constructor(private shoesService: ShoesService) { }
 
   ngOnInit(): void {
     this.shoesService.getShoes()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (result => this.shoes = result),
+      .subscribe(result => this.shoes.set(result),
         (error) => {
           console.error('Error fetching shoes:', error);
         }

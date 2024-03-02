@@ -19,6 +19,15 @@ li a {
     color: red;
 }
 
+.main-image {
+    height: 250px;
+    width: 320px;
+}
+
+.name {
+    text-align: center; 
+}
+
 li a:hover {
     opacity: 0.9;
     cursor: pointer;
