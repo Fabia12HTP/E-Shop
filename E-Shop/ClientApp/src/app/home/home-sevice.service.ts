@@ -14,4 +14,7 @@ export class ShoesService {
   getShoes(): Observable<Shoes[]> {
     return this.http.get<Shoes[]>(this.shoesURL);
   }
+  getShoeDetail(shoesId: number): Observable<Shoes> {
+    return this.http.get<Shoes>(this.shoesURL + shoesId);
+  }
 }

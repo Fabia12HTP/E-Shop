@@ -4,6 +4,7 @@ using System.Web;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace E_Shop.Services
 {
@@ -15,7 +16,16 @@ namespace E_Shop.Services
         {
             _context = context;
         }
-        
+
+        public ShoesDTO? GetShoesDetail(int ShoesId)
+        {
+            IEnumerable<ShoesDTO> dbGuilds = _context.ShoesDTO;
+
+            var dbGuild = dbGuilds.FirstOrDefault(ShoesDTO => ShoesDTO.Id == ShoesDTOId);
+
+            return dbGuild == null ? null : MapGuildToDto(dbGuild);
+        }
+
         public IEnumerable<ShoesDTO> GetShoes()
         {
             return _context.Shoes.Select(shoe => new ShoesDTO

@@ -16,8 +16,13 @@ namespace E_Shop.Controllers
             _homeService = homeService;
 
         [HttpGet]
-
         public IEnumerable<ShoesDTO> Get() => _homeService.GetShoes();
+
+        [HttpGet("{shoesId:number}")]
+        public ActionResult<ShoesDTO?> Get(int guildId) => GetResponse( _homeService.GetShoesDetail(guildId));
+
+        private ActionResult<ShoesDTO?> GetResponse(ShoesDTO? shoeDetail) =>
+            shoeDetail == null ? NotFound() : Ok(shoeDetail);
 
     }
 }
